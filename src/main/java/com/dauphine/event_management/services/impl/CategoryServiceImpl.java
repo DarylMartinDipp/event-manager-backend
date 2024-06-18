@@ -1,7 +1,7 @@
 package com.dauphine.event_management.services.impl;
 
-import com.dauphine.event_management.exceptions.CategoryAlreadyExistsException;
-import com.dauphine.event_management.exceptions.CategoryNotFoundByIdException;
+import com.dauphine.event_management.exceptions.category.CategoryAlreadyExistsException;
+import com.dauphine.event_management.exceptions.category.CategoryNotFoundByIdException;
 import com.dauphine.event_management.models.Category;
 import com.dauphine.event_management.repositories.CategoryRepository;
 import com.dauphine.event_management.services.CategoryService;

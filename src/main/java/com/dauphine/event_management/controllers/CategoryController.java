@@ -1,7 +1,7 @@
 package com.dauphine.event_management.controllers;
 
-import com.dauphine.event_management.exceptions.CategoryAlreadyExistsException;
-import com.dauphine.event_management.exceptions.CategoryNotFoundByIdException;
+import com.dauphine.event_management.exceptions.category.CategoryAlreadyExistsException;
+import com.dauphine.event_management.exceptions.category.CategoryNotFoundByIdException;
 import com.dauphine.event_management.models.Category;
 import com.dauphine.event_management.services.CategoryService;
 import io.swagger.v3.oas.annotations.Operation;
