@@ -17,32 +17,33 @@ import java.net.URI;
 @RequestMapping("v1/categories")
 @Tag(name = "Category Controller API", description = "Category-related endpoints.")
 public class CategoryController {
-    private final CategoryService service;
+    private final CategoryService categoryService;
 
-    public CategoryController(CategoryService service) {
-        this.service = service;
+    public CategoryController(CategoryService categoryService) {
+        this.categoryService = categoryService;
     }
 
     @GetMapping
     @Operation(
-            summary = "Get all the categories endpoint",
+            summary = "Get all the categories",
             description = "Return all the categories that are in the database."
     )
-    public ResponseEntity<List<Category>> getAll(@RequestParam(required = false) String name) {
+    public ResponseEntity<List<Category>> getAll(@RequestParam(required = false) String categoryName) {
         List<Category> categoriesToGet =
-                name == null || name.isBlank() ? service.getAll() : service.getAllByName(name);
+                categoryName == null || categoryName.isBlank() ?
+                        categoryService.getAllCategories() : categoryService.getAllCategoriesByName(categoryName);
         return ResponseEntity.ok(categoriesToGet);
     }
 
-    @GetMapping("{id}")
+    @GetMapping("{categoryId}")
     @Operation(
             summary = "Retrieve by ID endpoint",
             description = "Return a certain category according to its id."
     )
-    public ResponseEntity<Category> retrieveCategoryById(@PathVariable UUID id) {
+    public ResponseEntity<Category> retrieveCategoryById(@PathVariable UUID categoryId) {
         try {
-            final Category category = service.getById(id);
-            return ResponseEntity.ok(category);
+            final Category categoryToGet = categoryService.getCategoryById(categoryId);
+            return ResponseEntity.ok(categoryToGet);
         } catch (CategoryNotFoundByIdException e) {
             return ResponseEntity.notFound().build();
         }
@@ -55,7 +56,7 @@ public class CategoryController {
     )
     public ResponseEntity<Category> createCategory(@RequestBody String categoryName) {
         try {
-            final Category categoryToCreate = service.create(categoryName);
+            final Category categoryToCreate = categoryService.createCategory(categoryName);
             return ResponseEntity
                     .created(URI.create("v1/categories/" + categoryToCreate.getId()))
                     .body(categoryToCreate);
@@ -64,14 +65,14 @@ public class CategoryController {
         }
     }
 
-    @PutMapping("{id}")
+    @PutMapping("{categoryId}")
     @Operation(
             summary = "Update a category endpoint",
             description = "Update an existing category."
     )
-    public ResponseEntity<Category> updateCategory(@PathVariable UUID id, @RequestBody String name) {
+    public ResponseEntity<Category> updateCategory(@PathVariable UUID categoryId, @RequestBody String newCategoryName) {
         try {
-            Category categoryToUpdate = service.updateName(id, name);
+            Category categoryToUpdate = categoryService.updateCategory(categoryId, newCategoryName);
             return ResponseEntity.ok(categoryToUpdate);
         } catch (CategoryNotFoundByIdException e) {
             return ResponseEntity.notFound().build();
@@ -80,14 +81,14 @@ public class CategoryController {
         }
     }
 
-    @DeleteMapping("{id}")
+    @DeleteMapping("{categoryId}")
     @Operation(
             summary = "Delete a category endpoint",
             description = "Delete an existing category."
     )
-    public ResponseEntity<Void> deleteCategory(@PathVariable UUID id) {
+    public ResponseEntity<Void> deleteCategory(@PathVariable UUID categoryId) {
         try {
-            service.deleteById(id);
+            categoryService.deleteCategoryById(categoryId);
             return ResponseEntity.ok().build();
         } catch (CategoryNotFoundByIdException e) {
             return ResponseEntity.notFound().build();

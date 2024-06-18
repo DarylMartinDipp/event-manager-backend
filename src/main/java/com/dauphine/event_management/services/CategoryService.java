@@ -8,15 +8,16 @@ import java.util.List;
 import java.util.UUID;
 
 public interface CategoryService {
-    List<Category> getAll();
+    List<Category> getAllCategories();
 
-    List<Category> getAllByName(String name);
+    List<Category> getAllCategoriesByName(String categoryName);
 
-    Category getById(UUID id) throws CategoryNotFoundByIdException;
+    Category getCategoryById(UUID categoryId) throws CategoryNotFoundByIdException;
 
-    Category create(String name) throws CategoryAlreadyExistsException;
+    Category createCategory(String categoryName) throws CategoryAlreadyExistsException;
 
-    Category updateName(UUID id, String newName) throws CategoryNotFoundByIdException, CategoryAlreadyExistsException;
+    Category updateCategory(UUID categoryId, String newCategoryName)
+            throws CategoryNotFoundByIdException, CategoryAlreadyExistsException;
 
-    void deleteById(UUID id) throws CategoryNotFoundByIdException;
+    void deleteCategoryById(UUID categoryId) throws CategoryNotFoundByIdException;
 }

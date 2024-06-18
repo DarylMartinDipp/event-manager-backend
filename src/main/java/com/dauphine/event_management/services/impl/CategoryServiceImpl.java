@@ -12,47 +12,49 @@ import java.util.UUID;
 
 @Service
 public class CategoryServiceImpl implements CategoryService {
-    private final CategoryRepository repository;
+    private final CategoryRepository categoryRepository;
 
-    public CategoryServiceImpl(CategoryRepository repository) {
-        this.repository = repository;
+    public CategoryServiceImpl(CategoryRepository categoryRepository) {
+        this.categoryRepository = categoryRepository;
     }
 
     @Override
-    public List<Category> getAll() {
-        return repository.findAll();
+    public List<Category> getAllCategories() {
+        return categoryRepository.findAll();
     }
 
     @Override
-    public List<Category> getAllByName(String name) {
-        return repository.findAllByName(name);
+    public List<Category> getAllCategoriesByName(String categoryName) {
+        return categoryRepository.findAllByName(categoryName);
     }
 
     @Override
-    public Category getById(UUID id) throws CategoryNotFoundByIdException {
-        return repository.findById(id)
-                .orElseThrow(() -> new CategoryNotFoundByIdException(id));
+    public Category getCategoryById(UUID categoryId) throws CategoryNotFoundByIdException {
+        return categoryRepository.findById(categoryId)
+                .orElseThrow(() -> new CategoryNotFoundByIdException(categoryId));
     }
 
     @Override
-    public Category create(String name) throws CategoryAlreadyExistsException {
-        if (!repository.findAllByName(name).isEmpty()) throw new CategoryAlreadyExistsException(name);
-        Category category = new Category(UUID.randomUUID(), name);
-        return repository.save(category);
+    public Category createCategory(String categoryName) throws CategoryAlreadyExistsException {
+        if (!categoryRepository.findAllByName(categoryName).isEmpty())
+            throw new CategoryAlreadyExistsException(categoryName);
+        Category category = new Category(UUID.randomUUID(), categoryName);
+        return categoryRepository.save(category);
     }
 
     @Override
-    public Category updateName(UUID id, String newName)
+    public Category updateCategory(UUID categoryId, String newCategoryName)
             throws CategoryNotFoundByIdException, CategoryAlreadyExistsException {
-        Category category = getById(id);
-        if (!repository.findAllByName(newName).isEmpty()) throw new CategoryAlreadyExistsException(newName);
-        category.setName(newName);
-        return repository.save(category);
+        Category category = getCategoryById(categoryId);
+        if (!categoryRepository.findAllByName(newCategoryName).isEmpty())
+            throw new CategoryAlreadyExistsException(newCategoryName);
+        category.setName(newCategoryName);
+        return categoryRepository.save(category);
     }
 
     @Override
-    public void deleteById(UUID id) throws CategoryNotFoundByIdException {
-        getById(id);
-        repository.deleteById(id);
+    public void deleteCategoryById(UUID categoryId) throws CategoryNotFoundByIdException {
+        getCategoryById(categoryId);
+        categoryRepository.deleteById(categoryId);
     }
 }
