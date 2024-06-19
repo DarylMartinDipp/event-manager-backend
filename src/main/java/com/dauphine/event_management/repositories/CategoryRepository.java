@@ -12,7 +12,7 @@ public interface CategoryRepository extends JpaRepository<Category, UUID> {
     @Query("""
         SELECT c
         FROM Category c
-        WHERE c.name LIKE CONCAT('%', :name, '%')
+        WHERE UPPER(c.name) LIKE UPPER(CONCAT('%', :name, '%'))
     """)
     List<Category> findAllByName(@Param("name") String categoryName);
 }
