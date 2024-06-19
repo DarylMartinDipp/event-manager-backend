@@ -26,7 +26,7 @@ public class CategoryController {
     @GetMapping
     @Operation(
             summary = "Get all the categories",
-            description = "Return all the categories that are in the database."
+            description = "Return all categories that are in the database."
     )
     public ResponseEntity<List<Category>> getAll(@RequestParam(required = false) String categoryName) {
         List<Category> categoriesToGet =
@@ -37,7 +37,7 @@ public class CategoryController {
 
     @GetMapping("{categoryId}")
     @Operation(
-            summary = "Retrieve by ID endpoint",
+            summary = "Get a category by ID endpoint",
             description = "Return a certain category according to its id."
     )
     public ResponseEntity<Category> retrieveCategoryById(@PathVariable UUID categoryId) {

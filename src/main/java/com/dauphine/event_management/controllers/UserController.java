@@ -30,18 +30,18 @@ public class UserController {
     @GetMapping
     @Operation(
             summary = "Get all users endpoint",
-            description = "Return all the user that are in the database, sorted" +
-                    "by their alphabetical order."
+            description = "Return all users that are in the database, sorted" +
+                    "by alphabetical order."
     )
     public ResponseEntity<List<User>> getAllUsers(@RequestParam (required = false) String username) {
-        List<User> userToGet = userService.getAllUsers();
-        userToGet.sort(Comparator.comparing(User::getUsername));
-        return ResponseEntity.ok(userToGet);
+        List<User> usersToGet = userService.getAllUsers();
+        usersToGet.sort(Comparator.comparing(User::getUsername));
+        return ResponseEntity.ok(usersToGet);
     }
 
     @GetMapping("{userId}")
     @Operation(
-            summary = "Get all users by ID endpoint",
+            summary = "Get an user by ID endpoint",
             description = "Return a certain user according to its id."
     )
     public ResponseEntity<User> getUserById(@PathVariable UUID userId) {
@@ -73,8 +73,8 @@ public class UserController {
 
     @PutMapping("/{userId}")
     @Operation(
-            summary = "Update a user endpoint",
-            description = "Update a user according to the id."
+            summary = "Update an user endpoint",
+            description = "Update an user according to the id."
     )
     public ResponseEntity<User> updateUser(@PathVariable UUID userId, @RequestBody CreateUserRequest userToUpdate) {
         try {
@@ -91,7 +91,7 @@ public class UserController {
 
     @DeleteMapping("/{userId}")
     @Operation(
-            summary = "Delete a user endpoint",
+            summary = "Delete an user endpoint",
             description = "Delete an existing user according to the id."
     )
     public ResponseEntity<Void> deleteUser(@PathVariable UUID userId) {
