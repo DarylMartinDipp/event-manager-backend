@@ -9,6 +9,7 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Comparator;
 import java.util.List;
 import java.util.UUID;
 import java.net.URI;
@@ -28,10 +29,10 @@ public class CategoryController {
             summary = "Get all the categories endpoint",
             description = "Return all categories that are in the database."
     )
-    public ResponseEntity<List<Category>> getAll(@RequestParam(required = false) String categoryName) {
-        List<Category> categoriesToGet =
-                categoryName == null || categoryName.isBlank() ?
+    public ResponseEntity<List<Category>> getAllCategories(@RequestParam(required = false) String categoryName) {
+        List<Category> categoriesToGet = categoryName == null || categoryName.isBlank() ?
                         categoryService.getAllCategories() : categoryService.getAllCategoriesByName(categoryName);
+        categoriesToGet.sort(Comparator.comparing(Category::getName));
         return ResponseEntity.ok(categoriesToGet);
     }
 
@@ -40,7 +41,7 @@ public class CategoryController {
             summary = "Get a category by ID endpoint",
             description = "Return a certain category according to its id."
     )
-    public ResponseEntity<Category> retrieveCategoryById(@PathVariable UUID categoryId) {
+    public ResponseEntity<Category> getCategoryById(@PathVariable UUID categoryId) {
         try {
             final Category categoryToGet = categoryService.getCategoryById(categoryId);
             return ResponseEntity.ok(categoryToGet);
