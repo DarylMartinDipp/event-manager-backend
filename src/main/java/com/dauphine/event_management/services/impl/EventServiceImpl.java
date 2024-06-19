@@ -56,7 +56,7 @@ public class EventServiceImpl implements EventService {
     }
 
     @Override
-    public Event createEvent(String eventTitle, String eventDescription, int eventNumberStreet, String eventStreet,
+    public Event createEvent(String eventTitle, String eventDescription, short eventNumberStreet, String eventStreet,
                              String eventCity, String eventCountry, LocalDateTime eventDate, UUID organizerId,
                              UUID categoryId) throws UserNotFoundByIdException, CategoryNotFoundByIdException {
         User organizer = userService.getUserById(organizerId);
@@ -68,7 +68,7 @@ public class EventServiceImpl implements EventService {
     }
 
     @Override
-    public Event updateEvent(UUID eventId, String eventTitle, String eventDescription, int eventNumberStreet,
+    public Event updateEvent(UUID eventId, String eventTitle, String eventDescription, short eventNumberStreet,
                              String eventStreet, String eventCity, String eventCountry, LocalDateTime eventDate,
                              UUID organizerId, UUID categoryId)
             throws EventNotFoundByIdException, UserNotFoundByIdException, CategoryNotFoundByIdException {

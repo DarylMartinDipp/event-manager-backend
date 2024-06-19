@@ -25,7 +25,7 @@ public class CategoryController {
 
     @GetMapping
     @Operation(
-            summary = "Get all the categories",
+            summary = "Get all the categories endpoint",
             description = "Return all categories that are in the database."
     )
     public ResponseEntity<List<Category>> getAll(@RequestParam(required = false) String categoryName) {

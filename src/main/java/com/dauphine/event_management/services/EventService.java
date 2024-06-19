@@ -21,11 +21,11 @@ public interface EventService {
 
     Optional<Event> getEventsByCountry(String eventCountry);
 
-    Event createEvent(String eventTitle, String eventDescription, int eventNumberStreet, String eventStreet,
+    Event createEvent(String eventTitle, String eventDescription, short eventNumberStreet, String eventStreet,
                       String eventCity, String eventCountry, LocalDateTime eventDate, UUID organizerId,
                       UUID categoryId) throws UserNotFoundByIdException, CategoryNotFoundByIdException;
 
-    Event updateEvent(UUID eventId, String eventTitle, String eventDescription, int eventNumberStreet,
+    Event updateEvent(UUID eventId, String eventTitle, String eventDescription, short eventNumberStreet,
                       String eventStreet, String eventCity, String eventCountry, LocalDateTime eventDate,
                       UUID organizerId, UUID categoryId) throws EventNotFoundByIdException, UserNotFoundByIdException, CategoryNotFoundByIdException;
 

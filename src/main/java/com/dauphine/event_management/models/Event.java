@@ -20,7 +20,7 @@ public class Event {
     private String description;
 
     @Column
-    private int number_street;
+    private short number_street;
 
     @Column
     private String street;
@@ -49,7 +49,7 @@ public class Event {
 
     public Event() {}
 
-    public Event(String title, String description, int number_street, String street, String city,
+    public Event(String title, String description, short number_street, String street, String city,
                  String country,LocalDateTime event_date, User organizer_id, Category category_id) {
         this.id = UUID.randomUUID();
         this.title = title;
@@ -88,11 +88,11 @@ public class Event {
         this.description = description;
     }
 
-    public int getNumber_street() {
+    public short getNumber_street() {
         return number_street;
     }
 
-    public void setNumber_street(int number_street) {
+    public void setNumber_street(short number_street) {
         this.number_street = number_street;
     }
 

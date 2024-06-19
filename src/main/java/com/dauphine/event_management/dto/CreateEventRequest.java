@@ -6,7 +6,7 @@ import java.util.UUID;
 public class CreateEventRequest {
     private String eventTitle;
     private String eventDescription;
-    private int eventNumberStreet;
+    private short eventNumberStreet;
     private String eventStreet;
     private String eventCity;
     private String eventCountry;
@@ -14,7 +14,7 @@ public class CreateEventRequest {
     private UUID organizerId;
     private UUID categoryId;
 
-    public CreateEventRequest(String eventTitle, String eventDescription, int eventNumberStreet, String eventStreet,
+    public CreateEventRequest(String eventTitle, String eventDescription, short eventNumberStreet, String eventStreet,
                               String eventCity, String eventCountry, LocalDateTime eventDate, UUID organizerId,
                               UUID categoryId) {
         this.eventTitle = eventTitle;
@@ -44,11 +44,11 @@ public class CreateEventRequest {
         this.eventDescription = eventDescription;
     }
 
-    public int getEventNumberStreet() {
+    public short getEventNumberStreet() {
         return eventNumberStreet;
     }
 
-    public void setEventNumberStreet(int eventNumberStreet) {
+    public void setEventNumberStreet(short eventNumberStreet) {
         this.eventNumberStreet = eventNumberStreet;
     }
 
