@@ -61,6 +61,7 @@ public class UserServiceImpl implements UserService {
         userToUpdate.setEmail(newUserEmail);
         userToUpdate.setUsername(newUsername);
         userToUpdate.setHashed_password(newUserHashedPassword);
+
         return userRepository.save(userToUpdate);
     }
 
