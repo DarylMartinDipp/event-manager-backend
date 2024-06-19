@@ -11,7 +11,7 @@ import java.util.UUID;
 public interface UserService {
     List<User> getAllUsers();
 
-    List<User> getAllUsersByUsername(String username);
+    List<User> getUsersByUsername(String username);
 
     User getUserById(UUID userId) throws UserNotFoundByIdException;
 
