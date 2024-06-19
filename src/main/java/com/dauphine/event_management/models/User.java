@@ -27,17 +27,17 @@ public class User {
 
     @JsonFormat(pattern = "dd/MM/yyyy HH:mm")
     @Column(name = "created_at")
-    private LocalDateTime createdDate;
+    private LocalDateTime created_at;
+
+    public User() {}
 
     public User(String email, String username, String hashed_password) {
         this.id = UUID.randomUUID();
         this.email = email;
         this.username = username;
         this.hashed_password = hashed_password;
-        this.createdDate = LocalDateTime.now();
+        this.created_at = LocalDateTime.now();
     }
-
-    public User() {}
 
     public UUID getId() {
         return id;
@@ -71,11 +71,11 @@ public class User {
         this.hashed_password = hashed_password;
     }
 
-    public LocalDateTime getCreatedDate() {
-        return createdDate;
+    public LocalDateTime getCreated_at() {
+        return created_at;
     }
 
-    public void setCreatedDate(LocalDateTime createdDate) {
-        this.createdDate = createdDate;
+    public void setCreated_at(LocalDateTime created_at) {
+        this.created_at = created_at;
     }
 }
