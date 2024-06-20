@@ -7,7 +7,6 @@ import com.dauphine.event_management.exceptions.user.UsernameAlreadyExistsExcept
 import com.dauphine.event_management.models.User;
 import com.dauphine.event_management.services.UserService;
 import io.swagger.v3.oas.annotations.Operation;
-import io.swagger.v3.oas.annotations.parameters.RequestBody;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
