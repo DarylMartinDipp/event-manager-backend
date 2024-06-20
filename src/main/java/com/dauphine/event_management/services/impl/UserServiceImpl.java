@@ -51,13 +51,16 @@ public class UserServiceImpl implements UserService {
     @Override
     public User updateUser(UUID userId, String newUserEmail, String newUsername, String newUserHashedPassword)
             throws UserNotFoundByIdException, UserEmailAlreadyExistsException, UsernameAlreadyExistsException {
+        User userToUpdate = getUserById(userId);
+
         Optional<User> existingUserByEmail = userRepository.findByEmail(newUserEmail);
-        if (existingUserByEmail.isPresent()) throw new UserEmailAlreadyExistsException(newUserEmail);
+        if (existingUserByEmail.isPresent() && !existingUserByEmail.get().equals(userToUpdate))
+            throw new UserEmailAlreadyExistsException(newUserEmail);
 
         Optional<User> existingUserByUsername = userRepository.findByUsername(newUsername);
-        if (existingUserByUsername.isPresent()) throw new UsernameAlreadyExistsException(newUsername);
+        if (existingUserByUsername.isPresent() && !existingUserByUsername.get().equals(userToUpdate))
+            throw new UsernameAlreadyExistsException(newUsername);
 
-        User userToUpdate = getUserById(userId);
         userToUpdate.setEmail(newUserEmail);
         userToUpdate.setUsername(newUsername);
         userToUpdate.setHashed_password(newUserHashedPassword);
