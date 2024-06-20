@@ -9,10 +9,6 @@ import java.util.List;
 import java.util.UUID;
 
 public interface CategoryRepository extends JpaRepository<Category, UUID> {
-    @Query("""
-        SELECT c
-        FROM Category c
-        WHERE UPPER(c.name) LIKE UPPER(CONCAT('%', :name, '%'))
-    """)
+    @Query("SELECT c FROM Category c WHERE UPPER(c.name) LIKE UPPER(CONCAT('%', :name, '%'))")
     List<Category> findAllByName(@Param("name") String categoryName);
 }

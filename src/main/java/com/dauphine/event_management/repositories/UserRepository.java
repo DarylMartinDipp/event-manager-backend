@@ -12,6 +12,7 @@ import java.util.UUID;
 public interface UserRepository extends JpaRepository<User, UUID> {
     @Query("SELECT u FROM User u WHERE UPPER(u.username) LIKE UPPER(CONCAT('%', :username, '%'))")
     List<User> findByUsernameContainingIgnoreCase(@Param("username") String username);
+
     Optional<User> findByEmail(String userEmail);
     Optional<User> findByUsername(String username);
 }
