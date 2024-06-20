@@ -34,7 +34,8 @@ public class UserController {
                     "by alphabetical order."
     )
     public ResponseEntity<List<User>> getAllUsers(@RequestParam (required = false) String username) {
-        List<User> usersToGet = userService.getAllUsers();
+        List<User> usersToGet = username == null || username.isBlank() ?
+                userService.getAllUsers() : userService.getUsersByUsername(username);
         usersToGet.sort(Comparator.comparing(User::getUsername));
         return ResponseEntity.ok(usersToGet);
     }
