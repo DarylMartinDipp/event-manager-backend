@@ -7,7 +7,6 @@ import com.dauphine.event_management.exceptions.user.UserNotFoundByIdException;
 import com.dauphine.event_management.models.Event;
 import com.dauphine.event_management.services.EventService;
 import io.swagger.v3.oas.annotations.Operation;
-import io.swagger.v3.oas.annotations.parameters.RequestBody;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -33,8 +32,9 @@ public class EventController {
             description = "Return all events that are in the database, sorted" +
                     "by the event date."
     )
-    public ResponseEntity<List<Event>> getAllEvents(@RequestParam(required = false) String title) {
-        List<Event> eventsToGet = eventService.getAllEvents();
+    public ResponseEntity<List<Event>> getAllEvents(@RequestParam(required = false) String eventTitle) {
+        List<Event> eventsToGet = eventTitle == null || eventTitle.isBlank() ?
+                eventService.getAllEvents() : eventService.getEventsByTitle(eventTitle);
         eventsToGet.sort(Comparator.comparing(Event::getEvent_date));
         return ResponseEntity.ok(eventsToGet);
     }

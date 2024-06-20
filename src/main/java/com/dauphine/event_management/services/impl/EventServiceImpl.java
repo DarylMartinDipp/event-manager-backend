@@ -42,7 +42,7 @@ public class EventServiceImpl implements EventService {
 
     @Override
     public List<Event> getEventsByTitle(String eventTitle) {
-        return eventRepository.findByTitleContaining(eventTitle);
+        return eventRepository.findByTitleContainingIgnoreCase(eventTitle);
     }
 
     @Override
