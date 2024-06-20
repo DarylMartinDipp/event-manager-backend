@@ -10,7 +10,7 @@ import java.util.UUID;
 public interface CategoryService {
     List<Category> getAllCategories();
 
-    List<Category> getAllCategoriesByName(String categoryName);
+    List<Category> getCategoriesByName(String categoryName);
 
     Category getCategoryById(UUID categoryId) throws CategoryNotFoundByIdException;
 

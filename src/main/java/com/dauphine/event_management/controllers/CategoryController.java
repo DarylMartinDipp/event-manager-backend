@@ -31,7 +31,7 @@ public class CategoryController {
     )
     public ResponseEntity<List<Category>> getAllCategories(@RequestParam(required = false) String categoryName) {
         List<Category> categoriesToGet = categoryName == null || categoryName.isBlank() ?
-                        categoryService.getAllCategories() : categoryService.getAllCategoriesByName(categoryName);
+                        categoryService.getAllCategories() : categoryService.getCategoriesByName(categoryName);
         categoriesToGet.sort(Comparator.comparing(Category::getName));
         return ResponseEntity.ok(categoriesToGet);
     }
