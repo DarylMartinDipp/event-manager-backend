@@ -6,6 +6,7 @@ import com.dauphine.event_management.exceptions.user.UsernameAlreadyExistsExcept
 import com.dauphine.event_management.models.User;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 
 public interface UserService {
@@ -14,6 +15,8 @@ public interface UserService {
     List<User> getUsersByUsername(String username);
 
     User getUserById(UUID userId) throws UserNotFoundByIdException;
+
+    Optional<User> getUserByEmail(String userEmail);
 
     User createUser(String userEmail, String username, String hashedPassword)
             throws UserEmailAlreadyExistsException, UsernameAlreadyExistsException;

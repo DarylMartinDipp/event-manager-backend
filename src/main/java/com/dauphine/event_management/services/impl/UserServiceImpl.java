@@ -36,6 +36,11 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public Optional<User> getUserByEmail(String userEmail) {
+        return userRepository.findByEmail(userEmail);
+    }
+
+    @Override
     public User createUser(String userEmail, String username, String hashedPassword)
             throws UserEmailAlreadyExistsException, UsernameAlreadyExistsException {
         Optional<User> existingUserByEmail = userRepository.findByEmail(userEmail);

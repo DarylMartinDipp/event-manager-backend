@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.*;
 import java.net.URI;
 import java.util.Comparator;
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 
 @RestController
@@ -51,6 +52,17 @@ public class UserController {
         } catch (UserNotFoundByIdException e) {
             return ResponseEntity.notFound().build();
         }
+    }
+
+    @GetMapping("/by-email")
+    @Operation(
+            summary = "Get a user by email endpoint",
+            description = "Return a certain user according to its email."
+    )
+    public ResponseEntity<User> getUserByEmail(@RequestParam String userEmail) {
+        return userService.getUserByEmail(userEmail)
+                .map(ResponseEntity::ok)
+                .orElse(ResponseEntity.notFound().build());
     }
 
     @PostMapping
