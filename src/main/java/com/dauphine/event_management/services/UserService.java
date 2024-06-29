@@ -12,11 +12,13 @@ import java.util.UUID;
 public interface UserService {
     List<User> getAllUsers();
 
-    List<User> getUsersByUsername(String username);
+    List<User> getUsersByUsernameIgnoreCase(String username);
 
     User getUserById(UUID userId) throws UserNotFoundByIdException;
 
     Optional<User> getUserByEmail(String userEmail);
+
+    Optional<User> getUserByUsername(String username);
 
     User createUser(String userEmail, String username, String hashedPassword)
             throws UserEmailAlreadyExistsException, UsernameAlreadyExistsException;

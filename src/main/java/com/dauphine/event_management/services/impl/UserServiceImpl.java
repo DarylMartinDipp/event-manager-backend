@@ -26,7 +26,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public List<User> getUsersByUsername(String username) {
+    public List<User> getUsersByUsernameIgnoreCase(String username) {
         return userRepository.findByUsernameContainingIgnoreCase(username);
     }
 
@@ -38,6 +38,11 @@ public class UserServiceImpl implements UserService {
     @Override
     public Optional<User> getUserByEmail(String userEmail) {
         return userRepository.findByEmail(userEmail);
+    }
+
+    @Override
+    public Optional<User> getUserByUsername(String username) {
+        return userRepository.findByUsername(username);
     }
 
     @Override

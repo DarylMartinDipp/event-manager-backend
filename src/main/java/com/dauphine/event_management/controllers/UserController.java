@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.*;
 import java.net.URI;
 import java.util.Comparator;
 import java.util.List;
-import java.util.Optional;
 import java.util.UUID;
 
 @RestController
@@ -35,7 +34,7 @@ public class UserController {
     )
     public ResponseEntity<List<User>> getAllUsers(@RequestParam (required = false) String username) {
         List<User> usersToGet = username == null || username.isBlank() ?
-                userService.getAllUsers() : userService.getUsersByUsername(username);
+                userService.getAllUsers() : userService.getUsersByUsernameIgnoreCase(username);
         usersToGet.sort(Comparator.comparing(User::getUsername));
         return ResponseEntity.ok(usersToGet);
     }
@@ -61,6 +60,17 @@ public class UserController {
     )
     public ResponseEntity<User> getUserByEmail(@RequestParam String userEmail) {
         return userService.getUserByEmail(userEmail)
+                .map(ResponseEntity::ok)
+                .orElse(ResponseEntity.notFound().build());
+    }
+
+    @GetMapping("/by-username")
+    @Operation(
+            summary = "Get a user by username endpoint",
+            description = "Return a certain user according to its username."
+    )
+    public ResponseEntity<User> getUserByUsername(@RequestParam String username) {
+        return userService.getUserByUsername(username)
                 .map(ResponseEntity::ok)
                 .orElse(ResponseEntity.notFound().build());
     }
