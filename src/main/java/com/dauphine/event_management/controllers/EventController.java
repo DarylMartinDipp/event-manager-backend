@@ -53,6 +53,15 @@ public class EventController {
         }
     }
 
+    @GetMapping("/by-city")
+    @Operation(
+            summary = "Get events by city endpoint",
+            description = "Return a list of events according to the designated city."
+    )
+    public ResponseEntity<List<Event>> getEventsByCity(@RequestParam String eventCity) {
+        return ResponseEntity.ok(eventService.getEventsByCity(eventCity));
+    }
+
     @PostMapping
     @Operation(
             summary = "Create a new event endpoint",

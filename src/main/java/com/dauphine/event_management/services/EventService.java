@@ -17,7 +17,7 @@ public interface EventService {
 
     List<Event> getEventsByTitle(String eventTitle);
 
-    Optional<Event> getEventsByCity(String eventCity);
+    List<Event> getEventsByCity(String eventCity);
 
     Optional<Event> getEventsByCountry(String eventCountry);
 

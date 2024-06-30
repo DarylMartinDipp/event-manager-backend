@@ -13,6 +13,6 @@ public interface EventRepository extends JpaRepository<Event, UUID> {
     @Query("SELECT e FROM Event e WHERE LOWER(e.title) LIKE LOWER(CONCAT('%', :eventTitle, '%'))")
     List<Event> findByTitleContainingIgnoreCase(@Param("eventTitle") String eventTitle);
 
-    Optional<Event> findByCity(String eventCity);
+    List<Event> findByCity(String eventCity);
     Optional<Event> findByCountry(String eventCountry);
 }

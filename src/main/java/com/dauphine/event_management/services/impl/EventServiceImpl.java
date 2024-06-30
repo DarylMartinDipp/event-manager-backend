@@ -46,7 +46,7 @@ public class EventServiceImpl implements EventService {
     }
 
     @Override
-    public Optional<Event> getEventsByCity(String eventCity) {
+    public List<Event> getEventsByCity(String eventCity) {
         return eventRepository.findByCity(eventCity);
     }
 
