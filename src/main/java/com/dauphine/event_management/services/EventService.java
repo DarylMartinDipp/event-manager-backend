@@ -27,7 +27,8 @@ public interface EventService {
 
     Event updateEvent(UUID eventId, String eventTitle, String eventDescription, short eventNumberStreet,
                       String eventStreet, String eventCity, String eventCountry, LocalDateTime eventDate,
-                      UUID organizerId, UUID categoryId) throws EventNotFoundByIdException, UserNotFoundByIdException, CategoryNotFoundByIdException;
+                      UUID organizerId, UUID categoryId) throws EventNotFoundByIdException, UserNotFoundByIdException,
+                      CategoryNotFoundByIdException;
 
     void deleteEventById(UUID eventId) throws EventNotFoundByIdException;
 }
