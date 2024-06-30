@@ -13,9 +13,9 @@ public interface RegistrationService {
 
     Registration getRegistrationById(UUID registrationId) throws RegistrationNotFoundByIdException;
 
-    List<Registration> getRegistrationsByEventId(UUID eventId);
+    List<Registration> getRegistrationsByEventId(UUID eventId) throws EventNotFoundByIdException;
 
-    List<Registration> getRegistrationsByUserId(UUID userId);
+    List<Registration> getRegistrationsByUserId(UUID userId) throws UserNotFoundByIdException;
 
     Registration createRegistration(UUID userId, UUID eventId) throws UserNotFoundByIdException,
             EventNotFoundByIdException;

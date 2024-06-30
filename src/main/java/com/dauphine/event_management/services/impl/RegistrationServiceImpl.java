@@ -41,13 +41,15 @@ public class RegistrationServiceImpl implements RegistrationService {
     }
 
     @Override
-    public List<Registration> getRegistrationsByEventId(UUID eventId) {
-        return registrationRepository.findByEventId(eventId);
+    public List<Registration> getRegistrationsByEventId(UUID eventId) throws EventNotFoundByIdException {
+        Event event = eventService.getEventById(eventId);
+        return registrationRepository.findByEventId(event);
     }
 
     @Override
-    public List<Registration> getRegistrationsByUserId(UUID userId) {
-        return registrationRepository.findByUserId(userId);
+    public List<Registration> getRegistrationsByUserId(UUID userId) throws UserNotFoundByIdException {
+        User user = userService.getUserById(userId);
+        return registrationRepository.findByUserId(user);
     }
 
     @Override

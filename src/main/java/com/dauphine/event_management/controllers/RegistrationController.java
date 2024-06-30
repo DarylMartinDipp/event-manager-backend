@@ -54,7 +54,11 @@ public class RegistrationController {
             description = "Return a list of registrations according to the designated event."
     )
     public ResponseEntity<List<Registration>> getRegistrationsByEventId(@RequestParam UUID eventId) {
-        return ResponseEntity.ok(registrationService.getRegistrationsByEventId(eventId));
+        try {
+            return ResponseEntity.ok(registrationService.getRegistrationsByEventId(eventId));
+        } catch (EventNotFoundByIdException e) {
+            return ResponseEntity.notFound().build();
+        }
     }
 
     @GetMapping("/by-user")
@@ -63,7 +67,11 @@ public class RegistrationController {
             description = "Return a list of registrations according to the designated user."
     )
     public ResponseEntity<List<Registration>> getRegistrationsByUserId(@RequestParam UUID userId) {
-        return ResponseEntity.ok(registrationService.getRegistrationsByUserId(userId));
+        try {
+            return ResponseEntity.ok(registrationService.getRegistrationsByUserId(userId));
+        } catch (UserNotFoundByIdException e) {
+            return ResponseEntity.notFound().build();
+        }
     }
 
     @PostMapping
