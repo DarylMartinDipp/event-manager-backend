@@ -3,12 +3,12 @@ package com.dauphine.event_management.dto;
 public class CreateUserRequest {
     private String userEmail;
     private String username;
-    private String hashedPassword;
+    private String hashed_password;
 
-    public CreateUserRequest(String userEmail, String username, String hashedPassword) {
+    public CreateUserRequest(String userEmail, String username, String hashed_password) {
         this.userEmail = userEmail;
         this.username = username;
-        this.hashedPassword = hashedPassword;
+        this.hashed_password = hashed_password;
     }
 
     public String getUserEmail() {
@@ -27,11 +27,11 @@ public class CreateUserRequest {
         this.username = username;
     }
 
-    public String getHashedPassword() {
-        return hashedPassword;
+    public String getHashed_password() {
+        return hashed_password;
     }
 
-    public void setHashedPassword(String hashedPassword) {
-        this.hashedPassword = hashedPassword;
+    public void setHashed_password(String hashed_password) {
+        this.hashed_password = hashed_password;
     }
 }

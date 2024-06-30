@@ -83,7 +83,7 @@ public class UserController {
     public ResponseEntity<User> createUser(@RequestBody CreateUserRequest userToCreate) {
         try {
             User user = userService.createUser(
-                    userToCreate.getUserEmail(), userToCreate.getUsername(), userToCreate.getHashedPassword()
+                    userToCreate.getUserEmail(), userToCreate.getUsername(), userToCreate.getHashed_password()
             );
             return ResponseEntity
                     .created(URI.create("v1/users/" + user.getId()))
@@ -101,7 +101,7 @@ public class UserController {
     public ResponseEntity<User> updateUser(@PathVariable UUID userId, @RequestBody CreateUserRequest userToUpdate) {
         try {
             User user = userService.updateUser(
-                    userId, userToUpdate.getUserEmail(), userToUpdate.getUsername(), userToUpdate.getHashedPassword()
+                    userId, userToUpdate.getUserEmail(), userToUpdate.getUsername(), userToUpdate.getHashed_password()
             );
             return ResponseEntity.ok(user);
         } catch (UserNotFoundByIdException e) {
