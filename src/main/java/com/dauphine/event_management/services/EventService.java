@@ -15,6 +15,8 @@ public interface EventService {
 
     Event getEventById(UUID eventId) throws EventNotFoundByIdException;
 
+    List<Event> getUpcomingEvents();
+
     List<Event> getEventsByTitle(String eventTitle);
 
     List<Event> getEventsByCity(String eventCity);

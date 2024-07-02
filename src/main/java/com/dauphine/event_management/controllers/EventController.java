@@ -53,6 +53,17 @@ public class EventController {
         }
     }
 
+    @GetMapping("/upcoming")
+    @Operation(
+            summary = "Get upcoming events endpoint",
+            description = "Return a list of upcoming events."
+    )
+    public ResponseEntity<List<Event>> getUpcomingEvents() {
+        List<Event> upcomingEvents = eventService.getUpcomingEvents();
+        upcomingEvents.sort(Comparator.comparing(Event::getEvent_date));
+        return ResponseEntity.ok(upcomingEvents);
+    }
+
     @GetMapping("/by-city")
     @Operation(
             summary = "Get events by city endpoint",

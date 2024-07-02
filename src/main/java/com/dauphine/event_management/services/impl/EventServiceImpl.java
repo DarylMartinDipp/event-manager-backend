@@ -41,6 +41,11 @@ public class EventServiceImpl implements EventService {
     }
 
     @Override
+    public List<Event> getUpcomingEvents() {
+        return eventRepository.findUpcomingEvents(LocalDateTime.now());
+    }
+
+    @Override
     public List<Event> getEventsByTitle(String eventTitle) {
         return eventRepository.findByTitleContainingIgnoreCase(eventTitle);
     }
