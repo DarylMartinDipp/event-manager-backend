@@ -25,7 +25,7 @@ public class Feedback {
 
     @ManyToOne
     @JoinColumn(name = "event_id")
-    private User event_id;
+    private Event event_id;
 
     @JsonFormat(pattern = "dd/MM/yyyy HH:mm")
     @Column(name = "created_at")
@@ -33,7 +33,7 @@ public class Feedback {
 
     public Feedback() {}
 
-    public Feedback(String feedback, short rating, User user_id, User event_id) {
+    public Feedback(String feedback, short rating, User user_id, Event event_id) {
         this.id = UUID.randomUUID();
         this.feedback = feedback;
         this.rating = rating;
@@ -74,11 +74,11 @@ public class Feedback {
         this.user_id = user_id;
     }
 
-    public User getEvent_id() {
+    public Event getEvent_id() {
         return event_id;
     }
 
-    public void setEvent_id(User event_id) {
+    public void setEvent_id(Event event_id) {
         this.event_id = event_id;
     }
 
