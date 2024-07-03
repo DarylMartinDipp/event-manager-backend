@@ -61,12 +61,14 @@ public class FeedbackServiceImpl implements FeedbackService {
     }
 
     @Override
-    public Feedback updateFeedback(UUID feedbackId, UUID userId, String feedback, short rating, UUID eventId) throws FeedbackNotFoundByIdException, UserNotFoundByIdException, EventNotFoundByIdException {
+    public Feedback updateFeedback(UUID feedbackId, String feedback, short rating, UUID userId, UUID eventId) throws FeedbackNotFoundByIdException, UserNotFoundByIdException, EventNotFoundByIdException {
         Feedback feedbackToUpdate = getFeedbackById(feedbackId);
 
         User user = userService.getUserById(userId);
         Event event = eventService.getEventById(eventId);
 
+        feedbackToUpdate.setFeedback(feedback);
+        feedbackToUpdate.setRating(rating);
         feedbackToUpdate.setUser_id(user);
         feedbackToUpdate.setEvent_id(event);
 

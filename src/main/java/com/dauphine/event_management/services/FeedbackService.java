@@ -20,7 +20,7 @@ public interface FeedbackService {
     Feedback createFeedback(String feedback, short rating, UUID userId, UUID eventId) throws UserNotFoundByIdException,
             EventNotFoundByIdException;
 
-    Feedback updateFeedback(UUID feedbackId, UUID userId, String feedback, short rating, UUID eventId)
+    Feedback updateFeedback(UUID feedbackId, String feedback, short rating, UUID userId, UUID eventId)
             throws FeedbackNotFoundByIdException, UserNotFoundByIdException, EventNotFoundByIdException;
 
     void deleteFeedbackById(UUID feedbackId) throws FeedbackNotFoundByIdException;
